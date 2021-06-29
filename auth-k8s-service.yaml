@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-k8s-service-deployment
+  labels:
+    app: auth-k8s-service
+spec:
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: auth-k8s-service
+  template:
+    metadata: 
+      labels:
+        app: auth-k8s-service
+    spec:
+      containers:
+      - name: auth-k8s-service
+        image: vittoriapac/auth-service
+        ports:
+        - containerPort: 8081

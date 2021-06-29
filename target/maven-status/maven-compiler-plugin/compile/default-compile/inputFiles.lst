@@ -1,0 +1,11 @@
+/Users/vittoriapacchiano/Desktop/UninAPP_Aule/auth-service/src/main/java/com/vipac/authservice/repositories/RoleRepository.java
+/Users/vittoriapacchiano/Desktop/UninAPP_Aule/auth-service/src/main/java/com/vipac/authservice/controllers/AuthController.java
+/Users/vittoriapacchiano/Desktop/UninAPP_Aule/auth-service/src/main/java/com/vipac/authservice/services/CustomUserDetailService.java
+/Users/vittoriapacchiano/Desktop/UninAPP_Aule/auth-service/src/main/java/com/vipac/authservice/domains/User.java
+/Users/vittoriapacchiano/Desktop/UninAPP_Aule/auth-service/src/main/java/com/vipac/authservice/repositories/UserRepository.java
+/Users/vittoriapacchiano/Desktop/UninAPP_Aule/auth-service/src/main/java/com/vipac/authservice/domains/Role.java
+/Users/vittoriapacchiano/Desktop/UninAPP_Aule/auth-service/src/main/java/com/vipac/authservice/configs/ValidationConfig.java
+/Users/vittoriapacchiano/Desktop/UninAPP_Aule/auth-service/src/main/java/com/vipac/authservice/configs/PageConfig.java
+/Users/vittoriapacchiano/Desktop/UninAPP_Aule/auth-service/src/main/java/com/vipac/authservice/configs/WebSecurityConfig.java
+/Users/vittoriapacchiano/Desktop/UninAPP_Aule/auth-service/src/main/java/com/vipac/authservice/configs/CustomizeAuthenticationSuccessHandler.java
+/Users/vittoriapacchiano/Desktop/UninAPP_Aule/auth-service/src/main/java/com/vipac/authservice/AuthServiceApplication.java

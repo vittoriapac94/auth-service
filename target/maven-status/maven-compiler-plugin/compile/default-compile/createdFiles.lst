@@ -1,0 +1,11 @@
+com/vipac/authservice/domains/Role.class
+com/vipac/authservice/controllers/AuthController.class
+com/vipac/authservice/configs/WebSecurityConfig.class
+com/vipac/authservice/configs/CustomizeAuthenticationSuccessHandler.class
+com/vipac/authservice/services/CustomUserDetailService.class
+com/vipac/authservice/configs/PageConfig.class
+com/vipac/authservice/domains/User.class
+com/vipac/authservice/repositories/UserRepository.class
+com/vipac/authservice/configs/ValidationConfig.class
+com/vipac/authservice/AuthServiceApplication.class
+com/vipac/authservice/repositories/RoleRepository.class

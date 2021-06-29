@@ -1,0 +1,86 @@
+
+
+<html lang="en"
+	  class="h-100"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors"/>
+    <meta name="generator" content="Hugo 0.80.0"/>
+    <title>Registrati</title>
+    
+    
+<link rel="stylesheet" href="/css/bootstyle.css" />
+    
+<link rel="apple-touch-icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/apple-touch-icon.png" sizes="180x180"/>
+<link rel="icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png"/>
+<link rel="icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png"/>
+<link rel="manifest" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/manifest.json"/>
+<link rel="mask-icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3"/>
+<link rel="icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/favicon.ico"/>
+<link rel="stylesheet" href="/css/newstyle.css" />
+<meta name="theme-color" content="#7952b3"/>
+
+
+
+    
+    
+    <link href="https://getbootstrap.com/docs/5.0/examples/cover/cover.css" rel="stylesheet"/>
+  </head>
+  <body class="d-flex h-100 text-center text-white bg-dark">
+    
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="mb-auto">
+    <div>
+      <h3 class="float-md-start mb-0">UninAPP Aule</h3>
+      <nav class="nav nav-masthead justify-content-center float-md-end">
+        <a class="nav-link" th:href="@{/home}">Home</a>
+        <a class="nav-link active" aria-current="page" href="#">Login</a>
+      </nav><br>
+    </div>
+  </header>
+
+    <div layout:fragment="content">
+    	<center>
+            <form class="form-signin" th:action="@{/signup}" method="post" style= "width: 300px;">
+                <h1 class="h3 mb-3 font-weight-normal">Registrati qui</h1>
+                <div th:if="${param.error}">
+                    E-mail o password errati
+                </div>
+                <div th:if="${param.logout}">
+                    Sei stato disconnesso.
+                </div>
+                <label for="inputUsername" class="sr-only">Indirizzo e-mail</label>
+                <input type="email" name="email" id="inputEmail" class="form-control" placeholder="E-mail" required="" />
+                <p></p>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="" />
+                <p></p>
+                <label for="inputFullname" class="sr-only">Nome e cognome</label>
+                <input type="text" name="fullname" id="inputEmail" class="form-control" placeholder="Fullname" required="" />
+                <p></p>
+                <label for="inputMatricola" class="sr-only">Matricola</label>
+                <input type="text" name="matricola" id="inputMatricola" class="form-control" placeholder="Matricola" required="" />
+                <br>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Registrati</button>
+            </form>
+            <form class="form-signin" th:action="@{/login}" method="get" style= "width: 300px;">
+                <button class="btn btn-md btn-success btn-block" type="Submit">Login</button>
+            </form>
+        </center>
+   </div>
+  
+
+  <footer class="mt-auto text-white-50">
+    <br/>Creato da Giulio Capodagli, Danilo Gentile, Vittoria Pacchiano
+  </footer>
+</div>
+
+
+    
+  </body>
+</html>
