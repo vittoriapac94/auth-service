@@ -1,5 +1,7 @@
 package com.vipac.authservice.controllers;
 
+import com.vipac.authservice.configs.MessagingConfig;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,9 +15,17 @@ import com.google.gson.Gson;
 import com.vipac.authservice.domains.User;
 import com.vipac.authservice.services.CustomUserDetailService;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 public class AuthController {
-	static final String lecturesServiceURL = "http://35.205.228.95/";
+	static final String lecturesServiceURL = "https://localhost:9443/";
+    static final String oktaServiceURL = "https://localhost:8443/";
+
+    @Autowired
+    private RabbitTemplate template;
 
     @Autowired
     private CustomUserDetailService userService;
@@ -72,17 +82,49 @@ public class AuthController {
         modelAndView.setViewName("home");
         return modelAndView;
     }
+
+    @RequestMapping(value = {"/okta"}, method = RequestMethod.GET)
+    public ModelAndView oktalogin() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:" + oktaServiceURL );
+        return modelAndView;
+    }
     
     @RequestMapping(value = "/lectures", method = RequestMethod.GET)
-	public ModelAndView lectures() {
+	public ModelAndView lectures(HttpServletRequest request, HttpServletResponse response) {
     	ModelAndView modelAndView = new ModelAndView("redirect:" + lecturesServiceURL +"getAll");
     	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	System.out.println("auth: "+auth);
     	User user = userService.findUserByEmail(auth.getName());
-    	Gson gson = new Gson();
-    	String userJSON = gson.toJson(user);
+
+        Gson gson = new Gson();
+        String userJSON = gson.toJson(user);
+        String integrityAuth = org.apache.commons.codec.digest.DigestUtils.sha1Hex(userJSON);
+
+    	//Set cookie
+        Cookie cookie = new Cookie("sessionID", integrityAuth);
+        cookie.setMaxAge(7 * 24 * 60 * 60); // expires in 7 days
+        cookie.setSecure(true);
+        //add cookie to response
+        response.addCookie(cookie);
+
+        //Publish user on queue
+        template.convertAndSend(MessagingConfig.EXCHANGE, MessagingConfig.ROUTING_KEY, user);
+
     	modelAndView.addObject("currentUserJSON", userJSON);
+        modelAndView.addObject("integrityAuth", integrityAuth);
 	    return modelAndView;
 	}
+
+    @RequestMapping(value = "/lecturessaml", method = RequestMethod.GET)
+    public ModelAndView lecturesSaml(String currentUserJSON) {
+        ModelAndView modelAndView = new ModelAndView("redirect:" + lecturesServiceURL +"getAll");
+
+        String integrityAuth = org.apache.commons.codec.digest.DigestUtils.sha1Hex(currentUserJSON);
+        modelAndView.addObject("currentUserJSON", currentUserJSON);
+        modelAndView.addObject("integrityAuth", integrityAuth);
+        return modelAndView;
+    }
     
 
 }

@@ -67,6 +67,9 @@
             <form class="form-signin" th:action="@{/signup}" method="get" style="width: 241px;">
                 <button class="btn btn-md btn-success btn-block" type="Submit">Registrati</button>
             </form>
+            <form class="form-signin" th:action="@{/okta}" method="get" style="width: 241px;">
+                <button class="btn btn-md btn-success btn-block" type="Submit">Entra con okta</button>
+            </form>
             <div th:if="${fromView == 'sfoglia'}" style="font-size: 20px; color: red;">
                     Per sfogliare le lezioni, effettua il login
             </div>

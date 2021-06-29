@@ -18,7 +18,7 @@ import com.vipac.authservice.services.CustomUserDetailService;
 
 @Configuration
 @EnableWebSecurity
-@ComponentScan("com.vipac.authentication_service.configs")
+@ComponentScan("com.vipac.authservice.configs")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
